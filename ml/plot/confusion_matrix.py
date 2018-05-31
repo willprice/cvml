@@ -25,14 +25,15 @@ def plot_confusion_matrix(cnf_matrix, classes,
                           colorbar=True,
                           classes_per_inch=5):
     """
-    This function prints and plots the confusion matrix.
+    Plot a confusion matrix.
     Normalization can be applied by setting `normalize=True`.
 
     Source: http://scikit-learn.org/stable/auto_examples/model_selection/plot_confusion_matrix.html#sphx-glr-auto-examples-model-selection-plot-confusion-matrix-py
     """
     if normalize:
-        cnf_matrix = cnf_matrix.astype('float') / cnf_matrix.sum(axis=1)[:, np.newaxis]
-
+        normalization_factors = cnf_matrix.sum(axis=1)[:, np.newaxis]
+        normalization_factors[normalization_factors == 0] = 1
+        cnf_matrix = cnf_matrix.astype('float') / normalization_factors
     fig = plt.gcf()
     width_inches = len(classes) / float(classes_per_inch)
     fig.set_size_inches(width_inches, width_inches)
