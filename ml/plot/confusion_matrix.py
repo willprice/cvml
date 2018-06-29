@@ -19,14 +19,17 @@ def _add_colorbar(img, aspect=1.0/20, pad_fraction=0.5, **kwargs):
 def plot_confusion_matrix(cnf_matrix, classes,
                           normalize=True,
                           title='Confusion matrix',
-                          ylabel='True class',
-                          xlabel='Predicted class',
+                          ylabel='Predicted class',
+                          xlabel='True class',
                           cmap='Blues',
                           colorbar=True,
-                          classes_per_inch=5):
+                          classes_per_inch=5,
+                          **kwargs):
     """
     Plot a confusion matrix.
     Normalization can be applied by setting `normalize=True`.
+
+    `kwargs` are parsed on to the `plt.imshow` function.
 
     Source: http://scikit-learn.org/stable/auto_examples/model_selection/plot_confusion_matrix.html#sphx-glr-auto-examples-model-selection-plot-confusion-matrix-py
     """
@@ -37,7 +40,7 @@ def plot_confusion_matrix(cnf_matrix, classes,
     fig = plt.gcf()
     width_inches = len(classes) / float(classes_per_inch)
     fig.set_size_inches(width_inches, width_inches)
-    img = plt.imshow(cnf_matrix, interpolation='nearest', cmap=cmap)
+    img = plt.imshow(cnf_matrix, interpolation='nearest', cmap=cmap, **kwargs)
     plt.title(title)
     if colorbar:
         _add_colorbar(img, aspect=0.02)
