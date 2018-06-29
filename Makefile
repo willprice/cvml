@@ -1,5 +1,7 @@
 .PHONY: all docs test
 
+SRC:=$(shell find ml)
+
 LIBRARY_DIR:=libml
 
 all: test
@@ -10,7 +12,7 @@ docs:
 test:
 	tox
 
-dist:
+dist: $(SRC)
 	rm -rf dist
 	python setup.py sdist
 
