@@ -23,6 +23,7 @@ def plot_confusion_matrix(cnf_matrix, classes,
                           xlabel='Predicted class',
                           cmap='Blues',
                           colorbar=True,
+                          colorbar_aspect_ratio=None,
                           classes_per_inch=5,
                           **kwargs):
     """
@@ -43,7 +44,9 @@ def plot_confusion_matrix(cnf_matrix, classes,
     img = plt.imshow(cnf_matrix, interpolation='nearest', cmap=cmap, **kwargs)
     plt.title(title)
     if colorbar:
-        _add_colorbar(img, aspect=0.02)
+        if colorbar_aspect_ratio is None:
+            colorbar_aspect_ratio = max(0.03, 1. / len(classes))
+        _add_colorbar(img, aspect=colorbar_aspect_ratio)
     tick_marks = np.arange(len(classes))
     plt.xticks(tick_marks, classes, rotation=90)
     plt.yticks(tick_marks, classes)

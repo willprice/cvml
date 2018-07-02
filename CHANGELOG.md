@@ -1,3 +1,8 @@
+# NEXT
+
+* Add `colorbar_aspect_ratio` to `plot_confusion_matrix` to allow control of
+  colobar width
+
 # 0.1.1
 
 * Swap axis labels in `plot_confusion_matrix`, the y-axis shows the true class,
