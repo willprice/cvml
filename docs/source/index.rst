@@ -10,7 +10,8 @@ Welcome to cvml's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-.. automodule:: cvml
+   plot
+   video
 
 
 Indices and tables

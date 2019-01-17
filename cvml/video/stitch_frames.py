@@ -18,8 +18,7 @@ def stitch_frames(frame_dir: pathlib.Path, output_file: pathlib.Path,
                   fps=59.94,
                   overwrite=False,
                   frame_pattern=re.compile(r'.*jpg', re.IGNORECASE)):
-    """
-    Stitch a directory containing sequentially numbered frames into a
+    """Stitch a directory containing sequentially numbered frames into a
     video using FFMpeg
 
     Args:
@@ -34,7 +33,8 @@ def stitch_frames(frame_dir: pathlib.Path, output_file: pathlib.Path,
         overwrite: overwrite the ``output_file`` if it already exists?
         frame_pattern: python regex pattern for selecting a subset of files, defaults to selecting everything
 
-    Returns: None
+    Returns:
+        None
     """
     if not frame_dir.exists():
         raise FileNotFoundError("Frame directory + " + str(frame_dir) + " does not exist")
