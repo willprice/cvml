@@ -40,7 +40,7 @@ def stitch_frames(frame_dir: pathlib.Path, output_file: pathlib.Path,
         raise FileNotFoundError("Frame directory + " + str(frame_dir) + " does not exist")
     if not output_file.parent.exists():
         output_file.parent.mkdir(parents=True, exist_ok=True)
-    assert not output_file.exists() or overwrite, f'{output_file} already exists, and `overwrite` wasn\'t set'
+    assert not output_file.exists() or overwrite, '{} already exists, and `overwrite` wasn\'t set'.format(output_file)
     frames = [str(frame) for frame in frame_dir.iterdir() if frame_pattern.search(str(frame))]
     frames.sort()  # iterdir doesn't guarantee files are listed in lexicographic order
     if stop_idx == -1:
@@ -49,11 +49,11 @@ def stitch_frames(frame_dir: pathlib.Path, output_file: pathlib.Path,
         selected_frames = frames[start_idx:stop_idx:step]
     else:
         selected_frames = frames[stop_idx:start_idx:step]
-    assert len(selected_frames) > 0, f'No selected frames in {frame_dir}, check the directory has frames,' + \
-                                     'and the `frame_pattern` matches some files.'
+    assert len(selected_frames) > 0, 'No selected frames in {}, check the directory has frames,' + \
+                                     'and the `frame_pattern` matches some files.'.format(frame_dir)
 
     cat = subprocess.Popen(['cat'] + selected_frames, stdout=subprocess.PIPE)
-    LOG.info(f'Stitching frames from {frame_dir} into video {output_file}')
+    LOG.info('Stitching frames from {} into video {}'.format(frame_dir, output_file))
     try:
         subprocess.check_output(('ffmpeg', '-framerate', str(fps), '-f', 'image2pipe', '-i', '-',
                                  '-c:v', 'libx264', '-y', str(output_file.resolve())),
