@@ -11,6 +11,11 @@ setup(
     author_email='will.price94@gmail.com',
     url='http://github.com/willprice/libml',
     packages=find_packages(),
+    install_requires=[
+        'matplotlib',
+        'numpy',
+        'scikit-learn',
+    ],
     classifiers=[
         # How mature is this project? Common values are
         #   3 - Alpha
