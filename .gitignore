@@ -161,3 +161,6 @@ fabric.properties
 # Rider-specific rules
 *.sln.iml
 
+#####=== User ===#####
+.idea
+.rope_project
