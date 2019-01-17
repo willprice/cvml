@@ -3,8 +3,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to cvml's documentation!
-=================================
+cvml
+====
+
+A library of common tools needed for machine learning with a focus on
+action recognition.
 
 .. toctree::
    :maxdepth: 2
